@@ -15,8 +15,6 @@ contract DCAV3Factory {
 
     address public assetsWhitelist;
     address public dcaImpl;
-    uint256 public price;
-    address public treasury;
 
     address public constant WBTC = 0x2f2a2543B76A4166549F7aaB2e75Bef0aefC5B0f;
     address public constant SWAP_ROUTER = 0xE592427A0AEce92De3Edee1F18E0157C05861564;
