@@ -45,10 +45,9 @@ contract DCAV3Factory {
     ) external returns (address newDcaProxy) {
 
         address tokenOut = initialPosition.tokenToSpend;
-        uint256 spendAmount = 50 * 10**6;
 
         newDcaProxy = _deployDCA(newOwner, initialPosition);
-        TransferHelper.safeApprove(tokenOut, newDcaProxy, spendAmount);
+        TransferHelper.safeApprove(tokenOut, newDcaProxy, type(uint256).max);
 
         return newDcaProxy;
     }
