@@ -11,18 +11,16 @@ contract DCAV3 is DCACore {
 
     function executeMultihopPurchase(
         uint256 positionIndex,
-        uint256 feeMultiplier,
         ISwapRouter.ExactInputParams memory params
     ) external {
         Position storage pos = _allPositions[positionIndex];
         require(pos.executor == msg.sender, 'DCA: Wrong executor');
 
-        _multihopExactInputSwap(positionIndex, feeMultiplier, pos, params);
+        _multihopExactInputSwap(positionIndex, pos, params);
     }
 
     function _multihopExactInputSwap(
         uint256 _positionIndex,
-        uint256 _feeMultiplier,
         Position storage _pos,
         ISwapRouter.ExactInputParams memory _params
     ) internal {
@@ -39,9 +37,7 @@ contract DCAV3 is DCACore {
 
         require(tokenIn == _pos.tokenToSpend, 'DCA: Wrong input token');
 
-        _handleFees(tokenIn, _params.amountIn, _feeMultiplier);
-
-        require(IERC20(tokenIn).balanceOf(address(this)) >= _params.amountIn, 'DCA: Not enough funds');
+        require(IERC20(tokenIn).balanceOf(_params.recipient) >= _params.amountIn, 'DCA: Not enough funds');
 
         bytes memory tempPath;
 
