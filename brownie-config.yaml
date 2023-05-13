@@ -27,5 +27,7 @@ networks:
     verify: False
   polygon-test:
     verify: True
+  Mumbai-Ankr:
+    verify: False
 wallets:
   from_key: ${PRIVATE_KEY}
