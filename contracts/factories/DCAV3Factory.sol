@@ -39,56 +39,16 @@ contract DCAV3Factory {
         treasury = treasury_;
     }
 
-    // function createDCA(
-    //     address newOwner,
-    //     IDCA.Position calldata initialPosition,
-    //     ISwapRouter.ExactOutputParams calldata params
-    // ) external returns (address newDcaProxy) {
-    //     bool hasMultiplePools = params.path.hasMultiplePools();
-    //     (address tokenIn, address tokenOut) = params.path.decodeFirstPool();
-
-    //     require(tokenIn == WBTC, 'DCAFactory: Should get WBTC token');
-    //     require(params.recipient == treasury, 'DCAFactory: Treasury should be recipient');
-    //     require(params.amountOut == price, 'DCAFactory: Wrong amount of WBTC');
-
-    //     bytes memory tempPath;
-
-    //     if (hasMultiplePools) {
-    //         tempPath = params.path.skipToken();
-    //         while (true) {
-    //             hasMultiplePools = tempPath.hasMultiplePools();
-    //             (tokenIn, tokenOut) = tempPath.decodeFirstPool();
-
-    //             if (hasMultiplePools) {
-    //                 tempPath = tempPath.skipToken();
-    //             } else {
-    //                 break;
-    //             }
-    //         }
-    //     }
-
-    //     TransferHelper.safeApprove(tokenOut, SWAP_ROUTER, params.amountInMaximum);
-
-    //     uint256 amountIn = ISwapRouter(SWAP_ROUTER).exactOutput(params);
-
-    //     if (amountIn < params.amountInMaximum) {
-            // TransferHelper.safeApprove(tokenOut, SWAP_ROUTER, 0);
-    //         TransferHelper.safeTransferFrom(tokenOut, address(this), msg.sender, params.amountInMaximum - amountIn);
-    //     }
-
-    //     newDcaProxy = _deployDCA(newOwner, initialPosition);
-    //     return newDcaProxy;
-    // }
-
     function createDCA(
         address newOwner,
         IDCA.Position calldata initialPosition
     ) external returns (address newDcaProxy) {
 
-        (address tokenIn, address tokenOut) = params.path.decodeFirstPool();
+        address tokenOut = initialPosition.tokenToSpend;
+        uint256 spendAmount = 50 * 10**6;
 
         newDcaProxy = _deployDCA(newOwner, initialPosition);
-        TransferHelper.safeApprove(tokenOut, SWAP_ROUTER, 0);
+        TransferHelper.safeApprove(tokenOut, newDcaProxy, spendAmount);
 
         return newDcaProxy;
     }

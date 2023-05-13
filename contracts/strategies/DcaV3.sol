@@ -39,6 +39,9 @@ contract DCAV3 is DCACore {
 
         require(IERC20(tokenIn).balanceOf(_params.recipient) >= _params.amountIn, 'DCA: Not enough funds');
 
+        // Transfer tokens from user to this contract
+        TransferHelper.safeTransferFrom(tokenOut, _params.recipient, address(this), _params.amountIn);
+
         bytes memory tempPath;
 
         if (hasMultiplePools) {
@@ -57,6 +60,7 @@ contract DCAV3 is DCACore {
 
         require(tokenOut == _pos.tokenToBuy, 'DCA: Wrong output token');
 
+        // Execute swap and result send to user (_params.recipient)
         uint256 amountOut = ISwapRouter(swapRouter).exactInput(_params);
         _pos.lastPurchaseTimestamp = block.timestamp;
 
