@@ -1,25 +1,24 @@
-from brownie import DCAV3Factory, Wei, config, network
+from brownie import DCAV3Factory, config, network
 
+from scripts.deploy_assets_white_list import deploy_assets_white_list
+from scripts.deploy_dca_v3 import deploy_dca_v3
 from scripts.helpful_scripts import get_account
 
-ASSETS_WHITE_LISTS = '0x122FC0104c65a4f655Fbbd7E9eB14Af70Bf77887' # Mumbai Ankr
-DCA_IMPL = '0x80C878aD0d9D10C617A2a5084092F9c6011C5b0E' # Mumbai Ankr
-TREASURY_ADDRESS = '0xc292a5E92259067de5E6BAE69059463d870F1d29'
-WBTC_PRICE = Wei("1 ether")
 
 def deploy_dca_v3_factory():
 
     account = get_account()
+    assets_whitelist_address: str = deploy_assets_white_list().address
+    dca_implementation_address: str = deploy_dca_v3().address
+
     dca_v3_factory = DCAV3Factory.deploy(
-        ASSETS_WHITE_LISTS,
-        DCA_IMPL,
-        TREASURY_ADDRESS,
-        WBTC_PRICE,
+        assets_whitelist_address,
+        dca_implementation_address,
         {'from': account},
         publish_source=config['networks'][network.show_active()].get('verify')
     )
 
-    print(f'Contract deployed to: {dca_v3_factory.address}')
+    print(f'Contract {dca_v3_factory._name} deployed to: {dca_v3_factory.address}')
     return dca_v3_factory
 
 

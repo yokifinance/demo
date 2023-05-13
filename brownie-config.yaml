@@ -29,5 +29,9 @@ networks:
     verify: True
   Mumbai-Ankr:
     verify: False
+  polygon-main-fork:
+    verify: False
+  polygon-fork-dev:
+    verify: False
 wallets:
   from_key: ${PRIVATE_KEY}

@@ -1,6 +1,6 @@
 from brownie import accounts, config, network
 
-FORKED_LOCAL_ENVIRENMENTS = ['mainnet-fork', 'mainnet-fork-dev', 'mumbai-fork-dev']
+FORKED_LOCAL_ENVIRENMENTS = ['mainnet-fork', 'mainnet-fork-dev', 'mumbai-fork-dev', 'polygon-fork-dev']
 LOCAL_BLOCKCHAIN_ENVIRENMENTS = ['development', 'ganache-local']
 
 

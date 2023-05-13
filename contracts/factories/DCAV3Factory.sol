@@ -25,18 +25,12 @@ contract DCAV3Factory {
 
     constructor(
         address assetsWhitelist_,
-        address dcaImpl_,
-        address treasury_,
-        uint256 price_
+        address dcaImpl_
     ) {
         require(assetsWhitelist_ != address(0));
         require(dcaImpl_ != address(0));
-        require(treasury_ != address(0));
-        require(price_ > 0);
         assetsWhitelist = assetsWhitelist_;
         dcaImpl = dcaImpl_;
-        price = price_;
-        treasury = treasury_;
     }
 
     function createDCA(
