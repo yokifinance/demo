@@ -15,7 +15,7 @@ abstract contract DCACore is Initializable, IDCA, OwnableUpgradeable, Reentrancy
     IAssetsWhitelist public assetsWhitelist;
     address public swapRouter;
 
-    address public constant TREASURY = 0xc292a5E92259067de5E6BAE69059463d870F1d29;
+    address public constant TREASURY = 0x400d0dbd2240c8cF16Ee74E628a6582a42bb4f35;
     uint256 public constant EXECUTION_COOLDOWN = 3300;
 
     uint256 public constant BASIS_POINTS = 1000;
@@ -81,18 +81,6 @@ abstract contract DCACore is Initializable, IDCA, OwnableUpgradeable, Reentrancy
         Position calldata _newPosition
     ) external onlyOwner {
         _openPosition(_newPosition);
-    }
-
-    function _handleFees(
-        address _token,
-        uint256 _amount,
-        uint256 _feeMultiplier
-    ) internal {
-        require(_feeMultiplier <= MAX_FEE_MULTIPLIER, 'DCA: fee is too high');
-
-        uint256 fee = _amount * _feeMultiplier / BASIS_POINTS;
-
-        TransferHelper.safeTransfer(_token, TREASURY, fee);
     }
 
     function _openPosition(

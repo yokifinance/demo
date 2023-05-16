@@ -2,6 +2,7 @@
 pragma solidity ^0.8.10;
 
 import "../interfaces/IAssetsWhitelist.sol";
+import "@uniswap/contracts/interfaces/ISwapRouter.sol";
 
 interface IDCA {
     /**
@@ -51,4 +52,17 @@ interface IDCA {
         address newOwner_,
         Position calldata initialPosition_
     ) external;
+
+    function executeMultihopPurchase(
+        uint256 positionIndex,
+        ISwapRouter.ExactInputParams memory params
+    ) external;
+
+    function allPositionsLength(
+
+    )
 }
+
+    function allPositionsLength() external view returns (uint256) {
+        return _allPositions.length;
+    }
