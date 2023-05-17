@@ -58,11 +58,9 @@ interface IDCA {
         ISwapRouter.ExactInputParams memory params
     ) external;
 
-    function allPositionsLength(
+    function allPositionsLength() external view returns (uint256);
 
-    )
+    function getPosition(uint256 positionIndex) external view returns (Position memory);
+
+    function setBeneficiary(uint256 positionIndex, address newBeneficiary) external;
 }
-
-    function allPositionsLength() external view returns (uint256) {
-        return _allPositions.length;
-    }
