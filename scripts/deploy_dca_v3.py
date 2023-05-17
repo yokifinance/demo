@@ -1,10 +1,10 @@
 from brownie import DCAV3, config, network
 
-from scripts.helpful_scripts import LOCAL_BLOCKCHAIN_ENVIRENMENTS, get_account
+from scripts.helpful_scripts import get_account
 
 
 def deploy_dca_v3():
-    account = get_account()
+    account = get_account(account_label='main')
 
     dca_v3 = DCAV3.deploy(
 
