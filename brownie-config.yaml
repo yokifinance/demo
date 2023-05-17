@@ -31,7 +31,15 @@ networks:
     verify: False
   polygon-main-fork:
     verify: False
+  polygon-main:
+    verify: False
   polygon-fork-dev:
     verify: False
+    explorer: https://polygonscan.com/
+  polygon-llama:
+    verify: False
 wallets:
-  from_key: ${PRIVATE_KEY}
+  main:
+    from_key: ${PRIVATE_KEY}
+  worker:
+    from_key: ${PRIVATE_KEY_2}
