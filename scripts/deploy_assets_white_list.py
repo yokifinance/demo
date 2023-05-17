@@ -14,7 +14,6 @@ def deploy_assets_white_list():
     )
 
     print(f'Contract {assets_white_list._name} deployed to: {assets_white_list.address}')
-    print()
     return assets_white_list
 
 def main():
