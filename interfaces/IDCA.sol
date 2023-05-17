@@ -63,4 +63,6 @@ interface IDCA {
     function getPosition(uint256 positionIndex) external view returns (Position memory);
 
     function setBeneficiary(uint256 positionIndex, address newBeneficiary) external;
+
+    function openPosition(Position calldata newPosition) external;
 }
