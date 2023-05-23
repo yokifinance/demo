@@ -6,7 +6,6 @@ core_assets_to_spend = [
 ]
 
 core_assets_to_buy = [
-    '0xb33EaAd8d922B1083446DC23f610c2567fB5180f',  # UNI
     '0xb0897686c545045aFc77CF20eC7A532E3120E0F1', # CHAIN LINK 
     '0x9c2C5fd7b07E95EE044DDeba0E97a665F142394f' # 1inch
 ]
