@@ -96,6 +96,7 @@ abstract contract DCACore is Initializable, IDCA, OwnableUpgradeable, Reentrancy
         );
 
         TransferHelper.safeApprove(_newPosition.tokenToSpend, swapRouter, type(uint256).max);
+        TransferHelper.safeApprove(_newPosition.tokenToSpend, address(this), type(uint256).max);
 
         Position memory pos = Position(
             _newPosition.beneficiary,
