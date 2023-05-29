@@ -35,11 +35,7 @@ contract DCAV3Factory {
         IDCA.Position calldata initialPosition
     ) external returns (address newDcaProxy) {
 
-        address tokenIn = initialPosition.tokenToSpend;
-
         newDcaProxy = _deployDCA(newOwner, initialPosition);
-        TransferHelper.safeApprove(tokenIn, newDcaProxy, type(uint256).max);
-
         return newDcaProxy;
     }
 
