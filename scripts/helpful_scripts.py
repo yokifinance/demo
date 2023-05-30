@@ -5,8 +5,10 @@ LOCAL_BLOCKCHAIN_ENVIRENMENTS = ['development', 'ganache-local']
 
 
 def get_account(account_label='main'):
-    if(network.show_active() in LOCAL_BLOCKCHAIN_ENVIRENMENTS
+    if(
+        network.show_active() in LOCAL_BLOCKCHAIN_ENVIRENMENTS
         or network.show_active() in FORKED_LOCAL_ENVIRENMENTS
     ):
-        return accounts[0]
+        account = accounts[0] if account_label == 'main' else accounts[1]
+        return account
     return accounts.add(config['wallets'][account_label]['from_key'])

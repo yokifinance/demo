@@ -19,6 +19,6 @@ def deploy_dca_v3_factory(assets_whitelist_address: str , dca_implementation_add
 
 
 def main():
-    assets_whitelist_address = '0x55767e19Dd3Aa623a4A2537cA2DE29bA95E740f7'
-    dca_implementation_address = '0x16EbC30aEaEd24a446722aA4A24A5254ED07e950'
+    assets_whitelist_address = '0x59698022f08FF0d0B6EDbC956Fd9c0596543A983'
+    dca_implementation_address = '0xf52Aea45dFDE4669C73010D4C47E9e0c75E5c8ca'
     deploy_dca_v3_factory(assets_whitelist_address, dca_implementation_address)

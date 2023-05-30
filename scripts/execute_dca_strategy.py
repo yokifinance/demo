@@ -36,7 +36,7 @@ def execute_strategy(strategy_address: str, path: list):
     single_params_for_execute = (
         path[0], #tokenToSpend
         path[1], #tokenToBuy
-        encode(['uint24'], [3000]), # pool Fee 0.3%
+        3000, # pool Fee 0.3%
         main_account,
         _get_deadline_timestamp(10), # 10 minutes Deadline
         get_amount_wei(1, 6), # amountIn 1$
@@ -44,7 +44,7 @@ def execute_strategy(strategy_address: str, path: list):
         0 # sqrtPriceLimitX96
     )
     
-    position_index: int = 1
+    position_index: int = 0
     startegy = interface.IDCA(strategy_address)
 
 
@@ -54,6 +54,6 @@ def execute_strategy(strategy_address: str, path: list):
 
 
 def main():
-    path: list = ('0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174', '0xb0897686c545045aFc77CF20eC7A532E3120E0F1')
-    deployed_strategy_address: str = '0xab7F9697D40E8245cC8ac3F38e2C6F3a0757dBBf' #0x3A6e8a6Bfe6AB42d9E356b22704eb1029c4b6DF9'
+    path: list = ('0xc2132D05D31c914a87C6611C10748AEb04B58e8F', '0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619')
+    deployed_strategy_address: str = '0xe9BF0EB07e3c93f13EcDf9a92f070D6C8A23636C' #0x3A6e8a6Bfe6AB42d9E356b22704eb1029c4b6DF9'
     execute_strategy(deployed_strategy_address, path)
