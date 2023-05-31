@@ -50,7 +50,7 @@ contract DCAV3 is DCACore {
         require(IERC20(tokenIn).balanceOf(_params.recipient) >= _params.amountIn, 'DCA: Not enough funds');
 
         // Transfer tokens from user to this contract
-        TransferHelper.safeTransferFrom(tokenOut, _params.recipient, address(this), _params.amountIn);
+        TransferHelper.safeTransferFrom(tokenIn, _params.recipient, address(this), _params.amountIn);
 
         bytes memory tempPath;
 
