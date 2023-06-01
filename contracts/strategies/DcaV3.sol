@@ -93,14 +93,14 @@ contract DCAV3 is DCACore {
         address tokenIn = _params.tokenIn;
         address tokenOut = _params.tokenOut;
 
-        require(tokenIn == _pos.tokenToSpend, 'DCA: Wrong output token');
+        require(tokenIn == _pos.tokenToSpend, 'DCA: Wrong input token');
 
         require(IERC20(tokenIn).balanceOf(_params.recipient) >= _params.amountIn, 'DCA: Not enough funds');
 
         // Transfer tokens from user to this contract
         TransferHelper.safeTransferFrom(tokenIn, _params.recipient, address(this), _params.amountIn);
 
-        require(tokenOut == _pos.tokenToBuy, 'DCA: Wrong input token');
+        require(tokenOut == _pos.tokenToBuy, 'DCA: Wrong output token');
 
         // Execute swap and result send to user (_params.recipient)
         uint256 amountOut = ISwapRouter(swapRouter).exactInputSingle(_params);
