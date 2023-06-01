@@ -38,6 +38,7 @@ networks:
     explorer: https://polygonscan.com/
   polygon-llama:
     verify: False
+    explorer: https://polygonscan.com/
 wallets:
   main:
     from_key: ${PRIVATE_KEY}
