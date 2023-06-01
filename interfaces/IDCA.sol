@@ -2,6 +2,7 @@
 pragma solidity ^0.8.10;
 
 import "../interfaces/IAssetsWhitelist.sol";
+import "@uniswap/contracts/interfaces/ISwapRouter.sol";
 
 interface IDCA {
     /**
@@ -51,4 +52,22 @@ interface IDCA {
         address newOwner_,
         Position calldata initialPosition_
     ) external;
+
+    function executeMultihopPurchase(
+        uint256 positionIndex,
+        ISwapRouter.ExactInputParams memory params
+    ) external;
+
+    function executeSinglePurchase(
+        uint256 positionIndex,
+        ISwapRouter.ExactInputSingleParams memory params
+    ) external;
+
+    function allPositionsLength() external view returns (uint256);
+
+    function getPosition(uint256 positionIndex) external view returns (Position memory);
+
+    function setBeneficiary(uint256 positionIndex, address newBeneficiary) external;
+
+    function openPosition(Position calldata newPosition) external;
 }
