@@ -12,7 +12,7 @@ def _get_encode_path(address_list: list, pool_fee: int):
     first_address_bytes = to_bytes(hexstr=address_list[0])
     second_address_bytes = to_bytes(hexstr=address_list[1])
     pool_fee_bytes = struct.pack('>I', pool_fee)[1:]
-    encoded_path = first_address_bytes + second_address_bytes + pool_fee_bytes
+    encoded_path = first_address_bytes + pool_fee_bytes + second_address_bytes
     return encoded_path
 
 
