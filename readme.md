@@ -23,5 +23,5 @@
    }
 
 2. After strategy creation  with `createDCA` we got contract strategy address deployed for user  
-3. Set allowance to spend tokenToSpend from strategy to user address
+3. Set allowance to spend tokenToSpend from user address to strategy
 4. Execute strategy depends from purchase interval using worker backend service you want
