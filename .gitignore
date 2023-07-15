@@ -6,3 +6,5 @@ build/
 reports/
 .pytest_cache
 *txt
+env
+!requirements.txt
